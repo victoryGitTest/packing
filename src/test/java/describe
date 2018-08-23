@@ -1,0 +1,9 @@
+1.park
+    Given:car number
+    When:parking
+    Then:return 'success'
+
+2.pick up
+    Given:car number
+    When:pick up
+    Then:return 'pick up success'
