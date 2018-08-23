@@ -1,5 +1,5 @@
 1.park
-    Given:car number
+    Given:car
     When:parking
     Then:return 'success'
 
@@ -7,3 +7,8 @@
     Given:car number
     When:pick up
     Then:return 'pick up success'
+
+3.park in many park
+     Given:car
+     When:parking
+     Then:return 'success'

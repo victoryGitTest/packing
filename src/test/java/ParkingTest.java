@@ -32,5 +32,15 @@ public class ParkingTest {
 
     }
 
-
+    @Test
+    public void should_return_message_success_when_input_car_in_many_park(){
+        // Given
+        Car car = new Car();
+        car.setCarNumber("粤C123456");
+        ParkManager parkManager = new ParkManager();
+        // When
+        String parkingMessage = parkManager.parking(car);
+        // Then
+        Assert.assertEquals("success", parkingMessage);
+    }
 }

@@ -30,4 +30,8 @@ public class Park {
         }
         return car;
     }
+
+    public boolean isFull(){
+        return (carMap.size() >= MAX_SCROP)?true:false;
+    }
 }
