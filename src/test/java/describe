@@ -11,4 +11,14 @@
 3.park in many park
      Given:car
      When:parking
-     Then:return 'success'
+     Then:return parkCode
+
+4.park in many park when all park is full
+     Given:car,park is full
+     When:parking
+     Then:return 'false'
+
+4.park in many park when park0 is full
+     Given:car,park is full
+     When:parking
+     Then:return '2'

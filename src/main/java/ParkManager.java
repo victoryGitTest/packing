@@ -9,7 +9,9 @@ public class ParkManager {
         if (parks == null){
             parks = new ArrayList<Park>();
             for(int i=0;i<3;i++){
-                parks.add(new Park());
+                Park park = new Park();
+                park.setParkCode(i+1);
+                parks.add(park);
             }
         }
     }
@@ -25,6 +27,9 @@ public class ParkManager {
         }
         if (park != null){
             code = park.parking(car);
+        }
+        if (code.equals("success")){
+            code = park.getParkCode()+"";
         }
         return code;
     }

@@ -2,14 +2,9 @@ import java.util.*;
 
 public class Park {
 
-    private static Map<String,Car> carMap ;
+    private Map<String,Car> carMap = new HashMap<String, Car>();
     private final Integer MAX_SCROP = 10;
-
-    static {
-        if (carMap == null){
-            carMap = new HashMap<String, Car>();
-        }
-    }
+    private Integer parkCode;
 
     public String parking(Car car){
         String code = "false";
@@ -33,5 +28,13 @@ public class Park {
 
     public boolean isFull(){
         return (carMap.size() >= MAX_SCROP)?true:false;
+    }
+
+    public Integer getParkCode() {
+        return parkCode;
+    }
+
+    public void setParkCode(Integer parkCode) {
+        this.parkCode = parkCode;
     }
 }
