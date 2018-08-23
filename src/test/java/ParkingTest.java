@@ -95,7 +95,7 @@ public class ParkingTest {
     }
 
     @Test
-    public void should_return_car_when_pick_up_in_many_park_and_all_park_isfull(){
+    public void should_return_1_when_park1_is_full_and_have_pick_up_and_input_car(){
         // Given
         ParkManager parkManager = new ParkManager();
         for(int i=0;i<10;i++){
