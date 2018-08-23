@@ -28,7 +28,7 @@
      When:pick up
      Then:return car
 
-7.pick up in many park when all park is full
-     Given:car,all park is full
+7.pick up in many park when park1 is full and have pick up
+     Given:car,all park1 is full,one car had pick up
      When:parking
-     Then:return '2'
+     Then:return '1'
