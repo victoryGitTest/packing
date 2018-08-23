@@ -33,4 +33,15 @@ public class ParkManager {
         }
         return code;
     }
+
+    public Car pickUp(String carNumber) {
+        Car car = null;
+        for(Park park : parks){
+            car = park.pickUp(carNumber);
+            if (car != null){
+                break;
+            }
+        }
+        return car;
+    }
 }

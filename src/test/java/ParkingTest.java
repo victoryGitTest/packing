@@ -21,14 +21,14 @@ public class ParkingTest {
         //Given
         String carNumber = "粤C123456";
         Park park = new Park();
-        Car car = new Car();
-        car.setCarNumber(carNumber);
-        park.parking(car);
+        Car parkedCar = new Car();
+        parkedCar.setCarNumber(carNumber);
+        park.parking(parkedCar);
         //When
-        Car retcar = park.pickUp(carNumber);
+        Car car = park.pickUp(carNumber);
         //Then
-        Assert.assertNotNull(retcar);
-        Assert.assertEquals(carNumber,retcar.getCarNumber());
+        Assert.assertNotNull(car);
+        Assert.assertEquals(carNumber,car.getCarNumber());
 
     }
 
@@ -45,7 +45,7 @@ public class ParkingTest {
     }
 
     @Test
-    public void should_return_message_false_when_park_is_full_and_input_car() throws Exception{
+    public void should_return_message_false_when_park_is_full_and_input_car(){
         // Given
         ParkManager parkManager = new ParkManager();
         for(int i=0;i<30;i++){
@@ -62,7 +62,7 @@ public class ParkingTest {
     }
 
     @Test
-    public void should_return_2_false_when_park1_is_full_and_input_car() throws Exception{
+    public void should_return_2_false_when_park1_is_full_and_input_car(){
         // Given
         ParkManager parkManager = new ParkManager();
         for(int i=0;i<10;i++){
@@ -76,5 +76,41 @@ public class ParkingTest {
         String parkingMessage = parkManager.parking(car);
         // Then
         Assert.assertEquals("2", parkingMessage);
+    }
+
+
+    @Test
+    public void should_return_car_when_pick_up_in_many_park(){
+        // Given
+        String carNumber = "粤C123456";
+        Car parkedCar = new Car();
+        parkedCar.setCarNumber(carNumber);
+        ParkManager parkManager = new ParkManager();
+        parkManager.parking(parkedCar);
+        // When
+        Car car = parkManager.pickUp(carNumber);
+        // Then
+        Assert.assertNotNull(car);
+        Assert.assertEquals(carNumber,car.getCarNumber());
+    }
+
+    @Test
+    public void should_return_car_when_pick_up_in_many_park_and_all_park_isfull(){
+        // Given
+        ParkManager parkManager = new ParkManager();
+        for(int i=0;i<10;i++){
+            Car car = new Car();
+            car.setCarNumber("粤C123456"+i);
+            parkManager.parking(car);
+        }
+        String carNumber = "粤C123456";
+        String parkedCarNumber = "粤C1234565";
+        Car parkedCar = new Car();
+        parkedCar.setCarNumber(carNumber);
+        Car car = parkManager.pickUp(parkedCarNumber);
+        // When
+        String parkingMessage = parkManager.parking(car);
+        // Then
+        Assert.assertEquals("1",parkingMessage);
     }
 }

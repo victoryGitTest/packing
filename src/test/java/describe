@@ -6,7 +6,7 @@
 2.pick up
     Given:car number
     When:pick up
-    Then:return 'pick up success'
+    Then:return car
 
 3.park in many park
      Given:car
@@ -14,11 +14,21 @@
      Then:return parkCode
 
 4.park in many park when all park is full
-     Given:car,park is full
+     Given:car,all park is full
      When:parking
      Then:return 'false'
 
-4.park in many park when park0 is full
-     Given:car,park is full
+5.park in many park when park0 is full
+     Given:car,park0 is full
+     When:parking
+     Then:return '2'
+
+6.pick up car in many park
+     Given:car number
+     When:pick up
+     Then:return car
+
+7.pick up in many park when all park is full
+     Given:car,all park is full
      When:parking
      Then:return '2'
