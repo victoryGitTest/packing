@@ -37,9 +37,9 @@ public class ParkingTest {
         // Given
         Car car = new Car();
         car.setCarNumber("粤C123456");
-        ParkManager parkManager = new ParkManager();
+        ParkingBoy parkingBoy = new ParkingBoy();
         // When
-        String parkingMessage = parkManager.parking(car);
+        String parkingMessage = parkingBoy.parking(car);
         // Then
         Assert.assertNotEquals("false",parkingMessage);
     }
@@ -47,16 +47,16 @@ public class ParkingTest {
     @Test
     public void should_return_message_false_when_park_is_full_and_input_car(){
         // Given
-        ParkManager parkManager = new ParkManager();
+        ParkingBoy parkingBoy = new ParkingBoy();
         for(int i=0;i<30;i++){
             Car car = new Car();
             car.setCarNumber("粤C123456"+i);
-            parkManager.parking(car);
+            parkingBoy.parking(car);
         }
         Car car = new Car();
         car.setCarNumber("粤C123456");
         // When
-        String parkingMessage = parkManager.parking(car);
+        String parkingMessage = parkingBoy.parking(car);
         // Then
         Assert.assertEquals("false", parkingMessage);
     }
@@ -64,16 +64,16 @@ public class ParkingTest {
     @Test
     public void should_return_2_false_when_park1_is_full_and_input_car(){
         // Given
-        ParkManager parkManager = new ParkManager();
+        ParkingBoy parkingBoy = new ParkingBoy();
         for(int i=0;i<10;i++){
             Car car = new Car();
             car.setCarNumber("粤C123456"+i);
-            parkManager.parking(car);
+            parkingBoy.parking(car);
         }
         Car car = new Car();
         car.setCarNumber("粤C123456");
         // When
-        String parkingMessage = parkManager.parking(car);
+        String parkingMessage = parkingBoy.parking(car);
         // Then
         Assert.assertEquals("2", parkingMessage);
     }
@@ -85,10 +85,10 @@ public class ParkingTest {
         String carNumber = "粤C123456";
         Car parkedCar = new Car();
         parkedCar.setCarNumber(carNumber);
-        ParkManager parkManager = new ParkManager();
-        parkManager.parking(parkedCar);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.parking(parkedCar);
         // When
-        Car car = parkManager.pickUp(carNumber);
+        Car car = parkingBoy.pickUp(carNumber);
         // Then
         Assert.assertNotNull(car);
         Assert.assertEquals(carNumber,car.getCarNumber());
@@ -97,20 +97,35 @@ public class ParkingTest {
     @Test
     public void should_return_1_when_park1_is_full_and_have_pick_up_and_input_car(){
         // Given
-        ParkManager parkManager = new ParkManager();
+        ParkingBoy parkingBoy = new ParkingBoy();
         for(int i=0;i<10;i++){
             Car car = new Car();
             car.setCarNumber("粤C123456"+i);
-            parkManager.parking(car);
+            parkingBoy.parking(car);
         }
         String carNumber = "粤C123456";
         String parkedCarNumber = "粤C1234565";
         Car parkedCar = new Car();
         parkedCar.setCarNumber(carNumber);
-        Car car = parkManager.pickUp(parkedCarNumber);
+        Car car = parkingBoy.pickUp(parkedCarNumber);
         // When
-        String parkingMessage = parkManager.parking(car);
+        String parkingMessage = parkingBoy.parking(car);
         // Then
         Assert.assertEquals("1",parkingMessage);
+    }
+
+    @Test
+    public void should_return_message_parkCode_when_parking_car_by_smartParkingBoy(){
+        // Given
+        Car onecar = new Car();
+        onecar.setCarNumber("粤C123456");
+        SmartParkingBoy parkingBoy = new SmartParkingBoy();
+        parkingBoy.parking(onecar);
+        Car anotherCar = new Car();
+        anotherCar.setCarNumber("粤C123456");
+        // When
+        String parkingMessage = parkingBoy.parking(anotherCar);
+        // Then
+        Assert.assertEquals("2",parkingMessage);
     }
 }

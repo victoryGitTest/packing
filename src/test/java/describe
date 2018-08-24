@@ -32,3 +32,9 @@
      Given:car,all park1 is full,one car had pick up
      When:parking
      Then:return '1'
+
+
+8.pick up by smart parking boy
+     Given:one car had parked by smart parking boy and another parking by smart parking boy
+     When:parking
+     Then:return '2'
